@@ -32,18 +32,6 @@ jobs:
       - name: Check the value
         run: echo ${{ steps.step_one.outputs.hasToken }}
 
-  Fail:
-    runs-on: ubuntu-latest
-    needs: CheckToken
-    if: "contains(needs.CheckToken.outputs.hasToken, 'false')"
-    steps:
-    - name: "Read this:   https://github.com/acmesh-official/acme.sh/wiki/DNS-API-Test"
-      run: |
-        echo "Read this:   https://github.com/acmesh-official/acme.sh/wiki/DNS-API-Test"
-        if [ "${{github.repository_owner}}" != "acmesh-official" ]; then
-          false
-        fi
-
   Docker:
     runs-on: ubuntu-latest
     needs: CheckToken
